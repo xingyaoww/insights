@@ -1,0 +1,10 @@
+.env
+.env.local
+*.nosync
+__pycache__
+*.egg-info
+venv
+*.ecosystem.config.js
+*.sql
+prod_to_dev.sh
+.DS_Store

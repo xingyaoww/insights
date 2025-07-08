@@ -1,0 +1,37 @@
+name: Backend
+
+on:
+  push:
+    paths:
+      - '**.py'
+      - '.github/workflows/backend.yml'
+  pull_request:
+    paths:
+      - '**.py'
+      - '.github/workflows/backend.yml'
+
+jobs:
+  check:
+    name: Run backend checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+        working-directory: backend
+
+      - name: Run Ruff
+        run: ruff check .
+        working-directory: backend
+
+      - name: Run MyPy
+        run: mypy --explicit-package-bases .
+        working-directory: backend

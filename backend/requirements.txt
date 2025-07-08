@@ -1,0 +1,12 @@
+click
+requests
+types-requests
+psycopg
+psycopg[binary]
+tqdm
+types-tqdm
+dotenv
+statsmodels
+google-cloud-logging
+ruff
+mypy

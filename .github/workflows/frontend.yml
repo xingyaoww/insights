@@ -1,0 +1,37 @@
+name: Frontend
+
+on:
+  push:
+    paths:
+      - 'frontend/**/*'
+      - '.github/workflows/frontend.yml'
+  pull_request:
+    paths:
+      - 'frontend/**/*'
+      - '.github/workflows/frontend.yml'
+
+jobs:
+  check:
+    name: Run frontend checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Run ESLint
+        run: npm run lint
+        working-directory: frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: frontend
